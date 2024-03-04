@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Parsing</title>
+</head>
+<body>
+    <h1>Upload a CSV file</h1>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.csv_file.label }}<br>
+            {{ form.csv_file(size=32) }}<br>
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

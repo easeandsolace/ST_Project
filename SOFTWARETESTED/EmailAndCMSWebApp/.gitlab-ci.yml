@@ -1,0 +1,14 @@
+stages:
+  - deploy
+
+Deploy:
+  stage: deploy
+  environment:
+    name: production
+  when: always
+  tags:
+    - OVH5 
+  only:
+    - master
+  script:
+    - sudo -u emailcms-auslogics-org /var/deploy/gitlab/deploy-emailcms-auslogics-org.sh

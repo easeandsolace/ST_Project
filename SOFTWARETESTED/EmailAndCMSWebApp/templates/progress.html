@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Email Parsing - Progress</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Progress</h1>
+    <p id="progress-status">Processing your file...</p>
+
+    <script>
+        function checkIfDone() {
+            fetch('/is_done')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.done) {
+                        window.location.href = '/download';
+                    } else {
+                        // If it's not done, check again in 10 seconds
+                        setTimeout(checkIfDone, 10000);
+                        // Update progress status
+                        document.getElementById('progress-status').innerText = `Processed ${data.current}/${data.total} files`;
+                    }
+                });
+        }
+
+        // Start checking if it's done as soon as the page loads
+        checkIfDone();
+    </script>
+</body>
+</html>
